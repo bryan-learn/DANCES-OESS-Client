@@ -21,7 +21,7 @@ INSTALL
 	To build the application:
 		make
 
-COPYING/LECENSE
+COPYING/LICENSE
 
 	Copyright © 2014, Pittsburgh Supercomputing Center (PSC).  All Rights
 	Reserved.
