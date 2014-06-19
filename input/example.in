@@ -1,0 +1,40 @@
+# Use '#' at the start of a line for comments which are ignored by the parser.
+
+## Method Call Definition
+# service=<data|provisioning|measurement|monitoring|remote>
+# action=<any method available in the OESS API under the service type set above>
+# <parameter>=<value>, where parameter is any parameter name listed in the api 
+# for the method and value is the corresponding value.
+
+# Action 1
+service=data
+action=get_maps
+# get_maps does not take any parameters so they do not need to be defined
+
+# Action 2
+#service=data
+#action=get_existing_circuits
+#workgroup_id=1
+
+# Action 3
+#service=provisioning
+#action=provision_circuit
+#workgroup_id=1
+#circuit_id=-1
+#description=foo
+#=bandwidth=0
+#provision_time=-1
+#remove_time=-1
+#node=nddi-sw.chic.net.internet2.edu
+#interface=63
+#tag=100
+#node=nddi-sw.wash2.net.internet2.edu
+#interface=63
+#tag=100
+#link=CHIC-NEWY-10GE
+#link=NEWY-WASH-10GE 
+#backup_link=SEAT-CHIC-10GE 
+#backup_link=LOSA-SEAT-10GE
+#backup_link=LOSA-RALE-10GE
+#backup_link=WASH_RALE_10GE
+

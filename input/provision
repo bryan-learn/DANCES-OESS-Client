@@ -1,0 +1,27 @@
+# Use '#' at the start of a line for comments which are ignored by the parser.
+
+## Method Call Definition
+# service=<data|provisioning|measurement|monitoring|remote>
+# action=<any method available in the OESS API under the service type set above>
+# <parameter>=<value>, where parameter is any parameter name listed in the api 
+# for the method and value is the corresponding value.
+
+service=provisioning
+action=provision_circuit
+workgroup_id=241
+circuit_id=-1
+description=json-created-vlan
+bandwidth=0
+provision_time=-1
+remove_time=1401741656
+node=sdn-sw.pitt.net.internet2.edu
+interface=e1/2
+tag=4080
+node=sdn-sw.star.net.internet2.edu
+interface=e5/1
+tag=339
+link=I2-CLEV-PITT-100GE-10334
+link=I2-CLEV-STAR-100GE-07736
+
+
+

@@ -1,0 +1,13 @@
+# Use '#' at the start of a line for comments which are ignored by the parser.
+
+## Method Call Definition
+# service=[data|provisioning|measurement|monitoring|remote]
+# action=[any method available in the OESS API under the service type set above]
+#
+## Provide a parameter tag and value tag for each parameter (if any) for the above action
+# parameter=[parameter name listed in documentation]
+# value=[value of the parameter]
+
+service=data
+action=get_maps
+

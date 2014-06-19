@@ -1,0 +1,45 @@
+OESS-Client Version 0.03
+
+README
+
+ 	OESS-Client is a tool for utilizing the OESS (Open Exchange Software 
+	Suite) web API. It is designed to access services supported by Indiana
+	University's Global Research NOC (http://www.globalnoc.iu.edu).
+
+	For more information please read the MANAUAL document.
+
+CONTACT
+
+	If you have problems, questions, ideas, or suggestions please contact me at blearn@psc.edu.
+
+AUTHORS
+
+	Bryan Learn
+
+INSTALL
+
+	To build the application:
+		make
+
+COPYING/LECENSE
+
+	Copyright © 2014, Pittsburgh Supercomputing Center (PSC).  All Rights
+	Reserved.
+	
+	Permission to use this software and its documentation without fee for
+	personal or non-commercial use within your organization is hereby
+	granted, provided that the above copyright notice is preserved in all
+	copies and that the copyright and this permission notice appear in
+	supporting documentation.  Permission to redistribute this software
+	to other organizations or individuals is strictly prohibited without
+	the written permission of the Pittsburgh Supercomputing Center.  PSC
+	makes no representations about the suitability of this software for
+	any purpose.  It is provided "as is" without express or implied warranty.
+
+KNOWN ISSUES
+
+	No reported bugs or known issues.
+
+	Found a bug or having trouble? Contact me at blearn@psc.edu.
+
+
