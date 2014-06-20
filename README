@@ -18,8 +18,13 @@ AUTHORS
 
 INSTALL
 
-	To build the application:
-		make
+        Build and install the following dependencies:
+                libcurl 7.35.0 (build with SSL feature enabled)
+                iperf 3-CURRENT
+
+        Build the application:
+                make
+
 
 COPYING/LICENSE
 
