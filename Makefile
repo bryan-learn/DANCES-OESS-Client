@@ -1,7 +1,7 @@
 CC =		gcc
 
 CFLAGS =	-g -Wall
-LDFLAGS =	-L/usr/lib/i386-linux-gnu -lcurl -lm
+LDFLAGS =	-lcurl -lm
 
 all:		client
 
