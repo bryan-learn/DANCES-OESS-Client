@@ -80,8 +80,8 @@ FILE* coua_SendRequest(char *in_filepath, FILE *result, char *res_filepath)
 		 
 		/* Authentication Options */
 		curl_easy_setopt(handle, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-		curl_easy_setopt(handle, CURLOPT_USERNAME, "blearn");		// TODO pull username and password from infile
-		curl_easy_setopt(handle, CURLOPT_PASSWORD, "jefysB992547!");
+		curl_easy_setopt(handle, CURLOPT_USERNAME, "usr");		// TODO pull username and password from infile
+		curl_easy_setopt(handle, CURLOPT_PASSWORD, "passwd");
 
 		/* Request URL */
 		curl_easy_setopt(handle, CURLOPT_URL, requestURL);
