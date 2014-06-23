@@ -6,14 +6,16 @@ Table Of Contents
 -----------------
 
 1. Simple Usage
-2. Input File
-	2.1 Example
-3. Design
-	3.1 Parser
-	3.2 Client
-4. Future Features
-5. OESS Services
-6. Contact
+2. Install
+	2.1 Build
+3. Input File
+	3.1 Example
+4. Design
+	4.1 Parser
+	4.2 Client
+5. Future Features
+6. OESS Services
+7. Contact
 
 -----------------
 
@@ -35,7 +37,19 @@ on how to format.
 
 		oess-client example.in
 
-2. Input File
+2. Install
+
+2.1 Build
+
+	Build and install the following dependencies:
+		libcurl 7.35.0 (build with SSL feature enabled)
+		iperf 3-CURRENT
+
+	Build the application:
+		make
+
+
+3. Input File
 
 	The inFile is parsed to extract the method name, service type, and all 
 parameters for the method call. Inorder for the file to be parsed correctly the 
@@ -49,7 +63,7 @@ inFile must be in the following format:
 
 
 
-2.1 Example
+3.1 Example
 
 	# A more extensive example can be found in the example.in file.
 
@@ -72,9 +86,9 @@ inFile must be in the following format:
 	#workgroup_id=1
 
 
-3. Design
+4. Design
 
-3.1 Parser
+4.1 Parser
 
 	The parser extracts all the method call information from the inFile. It currently can
 only handle one method call per file (see future features).
@@ -83,7 +97,7 @@ only handle one method call per file (see future features).
 	Output: URL to pass the method call and parameters to the correct cgi script. 
 	Eg. "data.cgi?action=get_existing_circuits&parameter=workgroup_id&value=411&"
 
-3.2 Client
+4.2 Client
 
 	The client send requests to the OESS services and receives the response, storing the 
 result into the outFile. It also stores the HTTP header response in the heardRecv file to 
@@ -92,20 +106,19 @@ help with debugging.
 	Input: URL for a method call (from the parser)
 	Output: The service response store in the outFile.
 
-4. Future Features
+5. Future Features
 
 	* Extend the parser to handle multiple method calls per file.
 	* Possibly develop a more user-friendly format for the method definition file.
 	* Add base service URL to input file to work with more OESS host's
-	* Include a way to view the method call results over than opening the file.
-	  Reading large plain-text JSON objects
+	* Include a way to view the method call results other than opening the file.
 
-5. OESS Services
+6. OESS Services
 
 	Please see http://globalnoc.iu.edu/sdn/oess.html to find the most current API
 guide from the Global Research Network Operations Center.
 
-6. Contact
+7. Contact
 
 	If you have problems, questions, ideas, or suggestions please contact me at blearn@psc.edu.
 

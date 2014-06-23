@@ -6,7 +6,9 @@
 # <parameter>=<value>, where parameter is any parameter name listed in the api 
 # for the method and value is the corresponding value.
 
-service=data
-action=get_workgroup_members
+service=provisioning
+action=remove_circuit
 workgroup_id=881
+circuit_id=
+remove_time=-1
 

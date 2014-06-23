@@ -1,12 +1,15 @@
 CC =		gcc
 
 CFLAGS =	-g -Wall
-LDFLAGS =	-lcurl -lm
+LIBS =		-liperf -lcurl -lm
 
-all:		client
+all:	client example
 
-client:		src/client.c
-	$(CC) $(CFLAGS) src/client.c src/cJSON.c src/parser.c $(LDFLAGS) -o oess-client
+client:		
+	$(CC) $(CFLAGS) src/circuit-test.c src/cJSON.c src/parser.c src/coua.c $(LIBS) -o oess-ua
+
+example:	
+	$(CC) $(CFLAGS) src/example-client.c src/cJSON.c src/parser.c src/coua.c $(LIBS) -o oess-example
 
 clean:
-	-rm -f oess-client src/*.o src/*.a src/a.out src/core src/core.* src/*.core
+	-rm -f oess-example oess-ua src/*.o src/*.a src/a.out src/core src/core.* src/*.core

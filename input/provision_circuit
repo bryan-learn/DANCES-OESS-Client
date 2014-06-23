@@ -6,7 +6,22 @@
 # <parameter>=<value>, where parameter is any parameter name listed in the api 
 # for the method and value is the corresponding value.
 
-service=data
-action=get_workgroup_members
+service=provisioning
+action=provision_circuit
 workgroup_id=881
+circuit_id=-1
+description=json-created-vlan
+bandwidth=0
+provision_time=-1
+remove_time=-1
+node=sdn-sw.pitt.net.internet2.edu
+interface=e1/2
+tag=4080
+node=sdn-sw.star.net.internet2.edu
+interface=e5/1
+tag=339
+link=I2-CLEV-PITT-100GE-10334
+link=I2-CLEV-STAR-100GE-07736
+
+
 
