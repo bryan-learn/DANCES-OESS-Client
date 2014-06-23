@@ -25,6 +25,7 @@
 #include <curl/curl.h>
 #include "cJSON.h"
 #include "parser.h"
+#include "coua.h"
 
 /*
  * Builds request URL for the method call specified in the input file (see 
@@ -77,11 +78,14 @@ FILE* coua_SendRequest(char *in_filepath, FILE *result, char *res_filepath)
 		curl_easy_setopt(handle, CURLOPT_SSL_VERIFYPEER, 0);		// skip peer verfiication (for now)
 		curl_easy_setopt(handle, CURLOPT_SSL_VERIFYHOST, 1);		// verify host
 		curl_easy_setopt(handle, CURLOPT_SSLVERSION, 3);		// need to specify SSL version 3?
-		 
+	
+		/* Prompt user for credentials */
+		coua_input_credentials();
+	 
 		/* Authentication Options */
 		curl_easy_setopt(handle, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-		curl_easy_setopt(handle, CURLOPT_USERNAME, "usr");		// TODO pull username and password from infile
-		curl_easy_setopt(handle, CURLOPT_PASSWORD, "passwd");
+		curl_easy_setopt(handle, CURLOPT_USERNAME, coua_creds.usr);		// TODO pull username and password from infile
+		curl_easy_setopt(handle, CURLOPT_PASSWORD, coua_creds.pass);
 
 		/* Request URL */
 		curl_easy_setopt(handle, CURLOPT_URL, requestURL);
@@ -113,4 +117,63 @@ FILE* coua_SendRequest(char *in_filepath, FILE *result, char *res_filepath)
 	curl_global_cleanup();
 
 	return result;	 
+}
+
+/* Prompt user to input Credentials (coua_creds) */
+void coua_input_credentials(){
+	// Setup buffers
+	size_t buff_size = 100;		// buffer char count
+	size_t bytes_read;		// number of bytes read
+	char *usr_buff, *pass_buff;	// string buffers
+
+	// Prompt for user name
+	printf("\nPlease enter your credentials.\n");
+	printf("User: ");
+
+	// Store into buffer
+	usr_buff = (char *) malloc(buff_size+1);
+	bytes_read = getline(&usr_buff, &buff_size, stdin);
+
+	// remove trailing '\n' if present
+	size_t last = strlen(usr_buff)-1;
+	if( usr_buff[last] == '\n' ){ usr_buff[last] = '\0'; }
+
+
+	// Prompt for password
+        printf("Password: ");
+
+        // Store into buffer
+        pass_buff = (char *) malloc(buff_size+1);
+        bytes_read = getline(&pass_buff, &buff_size, stdin);
+
+	// remove trailing '\n' if present
+        last = strlen(pass_buff)-1;
+      	if( pass_buff[last] == '\n' ){ pass_buff[last] = '\0'; }
+
+	coua_set_credentials(usr_buff, pass_buff);
+}
+
+/* Set Credentials (coua_creds) from input strings usr and passwd */
+void coua_set_credentials(char *usr, char *pass){
+	
+	// if credentials exist, free memory
+	if(coua_creds.usr != NULL){
+		free(coua_creds.usr);
+	}
+	if(coua_creds.pass != NULL){
+		free(coua_creds.pass);
+	}
+
+	// (re-)allocate memory
+	coua_creds.usr = (char *) malloc(strlen(usr)+1);
+	coua_creds.pass = (char *) malloc(strlen(pass)+1);
+
+	// Copy memory from parameters to coua_creds
+	strncpy(coua_creds.usr, usr, strlen(usr));
+	strncpy(coua_creds.pass, pass, strlen(pass));
+}
+
+/* Frees resources allocated by coua functions */
+void coua_cleanup(){
+	// TODO free any dynamically allocated resources
 }

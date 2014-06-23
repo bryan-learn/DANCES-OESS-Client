@@ -22,6 +22,16 @@
 #ifndef coua_h
 #define coua_h
 
-extern void coua_SendRequest(char *in_filepath, FILE *result, char *out_filepath);
+FILE* coua_SendRequest(char *in_filepath, FILE *result, char *out_filepath);
+void coua_input_credentials();
+void coua_set_credentials(char *usr, char *pass);
+void coua_cleanup();
+
+typedef struct {
+	char *usr;
+	char *pass;
+} Credentials;
+
+Credentials coua_creds;
 
 #endif
