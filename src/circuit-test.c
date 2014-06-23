@@ -37,14 +37,14 @@ int main(int argc, char** argv)
 	// Perform the circuit provision request
 	coua_SendRequest("input/provision_circuit", result, "output/provision_result");
 
-	// Check result for success & circuit id
+	// Parse result for success & circuit id
 	// TODO
 	prov_success = true;
 
 	/* Test circuit with iperf */
 	if(prov_success){
 		// Setup iperf test
-		host = "";
+		host = "?";
 		port = 5000;
 	
 		test = iperf_new_test();	// Instantiate a new iperf_test
@@ -75,6 +75,8 @@ int main(int argc, char** argv)
 
 
 	/* Remove the newly provisioned circuit */
+
+	// Edit remove_circuit file to set the circuit id
 
 	// Perform the circuit remove request
 	//coua_SendRequest("input/remove_circuit", result, "output/remove_result");
