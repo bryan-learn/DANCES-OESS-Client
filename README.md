@@ -11,7 +11,7 @@ University's Global Research NOC (http://www.globalnoc.iu.edu).
 Table Of Contents
 -----------------
 
-1. Simple Usage
+1. [Simple Usage](#simple-usage)
 2. Install
 3. Input File
 4. Design
