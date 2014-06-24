@@ -12,12 +12,12 @@ Table Of Contents
 -----------------
 
 1. [Simple Usage](#simple-usage)
-2. Install
-3. Input File
-4. Design
-5. Future Features
-6. OESS Services
-7. Contact
+2. [Install](#install)
+3. [Input File](#input-file)
+4. [Design](#design)
+5. [Future Features](#future-features)
+6. [OESS Services](#oess-services)
+7. [Contact](#contact)
 
 -----------------
 
