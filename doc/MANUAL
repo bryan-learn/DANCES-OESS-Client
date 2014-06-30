@@ -46,8 +46,9 @@ __Build__
 
 Build and install the following dependencies:
 
-    libcurl 7.35.0 (build with SSL feature enabled)
-    iperf 3-CURRENT
+    libcurl 7 (build with SSL feature enabled)
+    iperf 3
+    libjson-c
 
 Build the application:
 
