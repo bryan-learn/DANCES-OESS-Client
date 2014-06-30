@@ -1,16 +1,16 @@
 /*
-        Copyright © 2014, Pittsburgh Supercomputing Center (PSC).  All Rights
-        Reserved.
+	Copyright © 2014, Pittsburgh Supercomputing Center (PSC).  All Rights
+	Reserved.
 
-        Permission to use this software and its documentation without fee for
-        personal or non-commercial use within your organization is hereby
-        granted, provided that the above copyright notice is preserved in all
-        copies and that the copyright and this permission notice appear in
-        supporting documentation.  Permission to redistribute this software
-        to other organizations or individuals is strictly prohibited without
-        the written permission of the Pittsburgh Supercomputing Center.  PSC
-        makes no representations about the suitability of this software for
-        any purpose.  It is provided "as is" without express or implied warranty.
+	Permission to use this software and its documentation without fee for
+	personal or non-commercial use within your organization is hereby
+	granted, provided that the above copyright notice is preserved in all
+	copies and that the copyright and this permission notice appear in
+	supporting documentation.  Permission to redistribute this software
+	to other organizations or individuals is strictly prohibited without
+	the written permission of the Pittsburgh Supercomputing Center.  PSC
+	makes no representations about the suitability of this software for
+	any purpose.  It is provided "as is" without express or implied warranty.
 */
 
 /*
@@ -22,6 +22,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sysexits.h>
+#include <termios.h>
+#include <unistd.h>
 #include <curl/curl.h>
 #include "cJSON.h"
 #include "parser.h"
@@ -121,9 +123,16 @@ FILE* coua_SendRequest(char *in_filepath, FILE *result, char *res_filepath)
 
 /* Prompt user to input Credentials (coua_creds) */
 void coua_input_credentials(){
+	// Setup Termios variables for stop terminal echoing password
+	struct termios oflags, nflags;
+	tcgetattr(fileno(stdin), &oflags);
+	nflags = oflags;		// save original flags
+	nflags.c_lflag &= ~ECHO;	// set disable echo flag
+	nflags.c_lflag |= ECHONL;
+
 	// Setup buffers
 	size_t buff_size = 100;		// buffer char count
-	size_t bytes_read;		// number of bytes read
+	//size_t bytes_read;		// number of bytes read
 	char *usr_buff, *pass_buff;	// string buffers
 
 	// Prompt for user name
@@ -132,25 +141,42 @@ void coua_input_credentials(){
 
 	// Store into buffer
 	usr_buff = (char *) malloc(buff_size+1);
-	bytes_read = getline(&usr_buff, &buff_size, stdin);
+	/*bytes_read = */getline(&usr_buff, &buff_size, stdin);
 
 	// remove trailing '\n' if present
 	size_t last = strlen(usr_buff)-1;
 	if( usr_buff[last] == '\n' ){ usr_buff[last] = '\0'; }
 
 
-	// Prompt for password
-        printf("Password: ");
+	// Echo disabled
+        if( tcsetattr(fileno(stdin), TCSADRAIN, &nflags) != 0 ) {
+                perror("tcsetattr");
+                exit( EXIT_FAILURE );
+        }
 
-        // Store into buffer
-        pass_buff = (char *) malloc(buff_size+1);
-        bytes_read = getline(&pass_buff, &buff_size, stdin);
+	// Prompt for password
+	printf("Password: ");
+
+	// Store into buffer
+	pass_buff = (char *) malloc(buff_size+1);
+	/*bytes_read = */getline(&pass_buff, &buff_size, stdin);
 
 	// remove trailing '\n' if present
-        last = strlen(pass_buff)-1;
+	last = strlen(pass_buff)-1;
       	if( pass_buff[last] == '\n' ){ pass_buff[last] = '\0'; }
 
+        // Echo enabled
+        if( tcsetattr(fileno(stdin), TCSANOW, &oflags) != 0 ) {
+                perror("tcsetattr");
+                exit( EXIT_FAILURE );
+        }
+
+
 	coua_set_credentials(usr_buff, pass_buff);
+
+	// Cleanup
+	free(usr_buff);
+	free(pass_buff);
 }
 
 /* Set Credentials (coua_creds) from input strings usr and passwd */

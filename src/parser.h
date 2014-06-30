@@ -31,8 +31,8 @@
  * Returns a string ready to append to the service URL.
  * Return string format: <service url>action=<value>&[parameter=<value>&value=<value>&]*
  */
-extern void parser_buildRequestURL(char* filepath);
-extern int parser_getURLSize();
-extern char* parser_getRequestURL();
+void parser_buildRequestURL(char* filepath);
+int parser_getURLSize();
+char* parser_getRequestURL();
 
 #endif

@@ -18,6 +18,7 @@
 #include <string.h>
 #include <stdint.h>
 #include <sysexits.h>
+#include <stdbool.h>
 #include "coua.h"
 #include "cJSON.h"
 #include "parser.h"
@@ -61,7 +62,7 @@ int main(int argc, char** argv)
 		iperf_set_test_server_port( test, port );
 		iperf_set_test_omit( test, 3 );
 		iperf_set_test_duration( test, 5 );
-		perf_set_test_reporter_interval( test, 1 );
+		iperf_set_test_reporter_interval( test, 1 );
 		iperf_set_test_stats_interval( test, 1 );
 	
 		printf("Do iperf test\n");
