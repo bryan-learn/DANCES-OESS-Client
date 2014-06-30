@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <json/json.h>
 #include "parser.h"
 
 void trim(char*);

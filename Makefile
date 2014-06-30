@@ -1,7 +1,7 @@
 CC =		gcc
 
 CFLAGS =	-g -Wall
-LIBS =		-liperf -lcurl -lm
+LIBS =		-liperf -lcurl -lm -ljson-c
 
 all:	client example
 
