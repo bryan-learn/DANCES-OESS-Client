@@ -40,7 +40,7 @@ int main(int argc, char** argv)
 
 	// Parse result for success & circuit id
 	// TODO
-	prov_success = true;
+	prov_success = false;
 
 	/* Test circuit with iperf */
 	if(prov_success){

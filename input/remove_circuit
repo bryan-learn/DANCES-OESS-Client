@@ -9,6 +9,6 @@
 service=provisioning
 action=remove_circuit
 workgroup_id=881
-circuit_id=
+circuit_id=62371
 remove_time=-1
 
